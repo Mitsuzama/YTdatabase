@@ -1,0 +1,43 @@
+  - prelucrarea unei baze de date prin intermediul aplicatiei front-end
+  - baza de date trebuie sa contina cel putin 4 tabele
+  - intre tabele trebuie sa existe cel putin o legatura one-to-one si cel putin o legatura 
+one-to-many
+  - [optional] folosirea legaturilor many-to-many
+  - folosirea constrangerilor de integritate referentiala: primary key si foreign key
+  - folosirea constrangerilor de integritate de tip check, unique, not null
+  - folosirea tranzactiilor (cel putin o tranzactie)
+  - aplicatia front-end trebuie sa ofere posibilitatea de a 
+vizualiza/adauga/modifica/sterge inregistrari din tabele
+  - preluarea datelor din aplicatia server trebuie facuta folosind secvente SQL 
+(nu se accepta folosirea ORM)
+  - validarea datelor de intrare (ex. numele sa nu contina cifre, adresele de e-mail 
+sa fie validate etc)
+  - primary key-urile nu vor fi introduse din interfata (vor fi generate ori de aplicatie, 
+ori de baza de date printr-un mecanism de tip autoincrement)
+  - foreign key-urile nu vor fi introduse direct ca si valori (se va afisa un popup 
+sau o lista de unde se va selecta tupla parinte, iar valoarea foreign-key-ului va fi preluata automat de aplicatie)
+  - [optional] autentificarea si autorizarea utilizatorilor folosind user/password 
+(parola va fi criptata in baza de date)
+
+Documentatie (~5 pagini):
+  - titlu, nume student, grupa, cadru didactic coordonator
+  - descrierea proiectului (scopul aplicatiei) ~ 1/2 pagina
+  - tehnologiile folosite (pentru front-end si back-end)
+  - structura si inter-relationarea tabelelor (diagrama ER, inclusiv aspecte 
+legate de normalizare, cu explicatii)
+  - descrierea constrangerilor folosite si de ce au fost acestea necesare
+  - descrierea modalitatii de conectare la baza de date din aplicatie
+  - 1-2 capturi de ecran concludente din interfata aplicatiei impreuna cu exemple de 
+cod si instructini SQL folosite
+  - documentatia nu va contine script-uri cu instructiuni SQL
+
+Termene:
+  - saptamana 4: pe foaia de prezenta la laborator, in dreptul numelui, 
+va fi trecut titlul temei alease
+  - pana la inceputul saptamanii 13 (duminica 09.01.2022, ora 23:59): 
+upload pe platforma Moodle a proiectului sub forma unei arhive .zip, cu urmatorul continut:
+    - documentatie in format .pdf
+    - surse aplicatie + executabil (dupa caz)
+    - script creare tabele (inclusiv contrangeri aferente)
+    - script populare baza de date cu date de test (minim 5 inregistrari pentru 
+fiecare tabela)
