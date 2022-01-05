@@ -1,10 +1,10 @@
   - prelucrarea unei baze de date prin intermediul aplicatiei front-end
-  - baza de date trebuie sa contina cel putin 4 tabele
-  - intre tabele trebuie sa existe cel putin o legatura one-to-one si cel putin o legatura 
+  (ok)- baza de date trebuie sa contina cel putin 4 tabele
+  (ok)- intre tabele trebuie sa existe cel putin o legatura one-to-one si cel putin o legatura 
 one-to-many
   - [optional] folosirea legaturilor many-to-many
-  - folosirea constrangerilor de integritate referentiala: primary key si foreign key
-  - folosirea constrangerilor de integritate de tip check, unique, not null
+  (ok)- folosirea constrangerilor de integritate referentiala: primary key si foreign key
+  (ok)- folosirea constrangerilor de integritate de tip check, unique, not null
   - folosirea tranzactiilor (cel putin o tranzactie)
   - aplicatia front-end trebuie sa ofere posibilitatea de a 
 vizualiza/adauga/modifica/sterge inregistrari din tabele
