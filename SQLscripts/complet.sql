@@ -1,10 +1,60 @@
+create database ytdatabase;
+use ytdatabase;
+show tables;
+select * from users;
 
-INSERT INTO roles VALUES (1, 'client');
+DROP TABLE login_account;
+DROP TABLE video_comment;
+DROP TABLE videos;
+DROP TABLE users;
+DROP TABLE roles;
+
+CREATE TABLE roles(
+                role_id INTEGER PRIMARY KEY NOT NULL,
+                role_type VARCHAR(255) UNIQUE NOT NULL
+            );
+
+CREATE TABLE users(
+                user_id INTEGER PRIMARY KEY NOT NULL,
+                first_name VARCHAR(255),
+                last_name VARCHAR(255),
+                age INTEGER,
+                city TEXT,
+                email TEXT,
+                role_type VARCHAR(255) NOT NULL,
+                FOREIGN KEY (role_type) REFERENCES roles(role_type) ON DELETE CASCADE
+            );
+
+CREATE TABLE videos(
+                video_id INTEGER PRIMARY KEY NOT NULL,
+                title VARCHAR(255) NOT NULL UNIQUE,
+                user_id INTEGER NOT NULL,
+                no_of_likes INTEGER NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            );
+
+CREATE TABLE video_comment(
+                comment_id INTEGER PRIMARY KEY NOT NULL,
+                user_id INTEGER NOT NULL,
+                video_id INTEGER NOT NULL,
+                comments TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+                FOREIGN KEY (video_id) REFERENCES videos(video_id) ON DELETE CASCADE
+            );
+
+CREATE TABLE login_account(
+                user_id INTEGER PRIMARY KEY NOT NULL,
+                username VARCHAR(255) NOT NULL,
+                user_password VARCHAR(20),
+                CONSTRAINT password_check CHECK (length(user_password) >= 1 AND length(user_password)<=16),
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            );            
+
+INSERT INTO roles VALUES (1, 'user');
 INSERT INTO roles VALUES (2, 'admin');
 
-
-INSERT INTO users VALUES (1,  'Paraschiva', 'Pristanda',    18, 'Iasi',         'paraschiva@yahoo.com' , 'admin);
-INSERT INTO users VALUES (2,  'Paula',      'Horea',        34, 'Galati',       'daniel@yahoo.com'     , 'user');
+INSERT INTO users VALUES (1,  'Paraschiva', 'Pristanda',    18, 'Iasi',         'paraschiva@yahoo.com'  , 'admin');
+INSERT INTO users VALUES (2,  'Paula',      'Horea',        34, 'Galati',       'daniel@yahoo.com'      , 'user');
 INSERT INTO users VALUES (3,  'Demetra',    'Daniel',       21, 'Bacau',        'paraschiva@yahoo.com'  , 'user');
 INSERT INTO users VALUES (4,  'Stefania',   'Petru',        9,  'Arad',         'petru@yahoo.com'       , 'user');
 INSERT INTO users VALUES (5,  'Rares',      'Veronica',     37, 'Olt',          'veronica@yahoo.com'    , 'user');
@@ -41,6 +91,7 @@ INSERT INTO users VALUES (35, 'Riley',      'Greenaway',    37, 'Dushanbe',     
 INSERT INTO users VALUES (36, 'Mica',       'Cosmin',       14, 'Warsaw',       'cosmin@yahoo.com'      , 'user');
 
 
+
 INSERT INTO videos VALUES ( 1,  '10 MIN FULL BODY STRETCHING',                  36, 1913627);
 INSERT INTO videos VALUES ( 2,  'Next Gen Graphics Is Kinda Nuts..',            1,  1913627);
 INSERT INTO videos VALUES ( 3,  'Kygo - Love Me Now',                           26, 1913627);
@@ -68,6 +119,43 @@ INSERT INTO video_comment VALUES(1, 3, 14, 'Beautiful execution!');
 INSERT INTO video_comment VALUES(2, 4, 16, 'Incredible!');
 INSERT INTO video_comment VALUES(3, 7, 2, 'Cant wait for the next one');
 INSERT INTO video_comment VALUES(4, 30, 1, 'I dont know the language');
-INSERT INTO video_comment VALUES(5, 31, 15, 'Tom the cat');
 
+
+            
+INSERT INTO login_account VALUES (1,  'Paraschiva', 'Pristanda');
+INSERT INTO login_account VALUES (2,  'Paula',      'Horea');
+INSERT INTO login_account VALUES (3,  'Demetra',    'Daniel');
+INSERT INTO login_account VALUES (4,  'Stefania',   'Petru');
+INSERT INTO login_account VALUES (5,  'Rares',      'Veronica');
+INSERT INTO login_account VALUES (6,  'Sorin',      'Antalupei');
+INSERT INTO login_account VALUES (7,  'Ava',        'Bishop');
+INSERT INTO login_account VALUES (8,  'River',      'Austin');
+INSERT INTO login_account VALUES (9,  'Alex',       'Bailey');
+INSERT INTO login_account VALUES (10, 'Arianne',    'Coombes');
+INSERT INTO login_account VALUES (11, 'Maximus',    'Bean');
+INSERT INTO login_account VALUES (12, 'Anish',      'Farrington');
+INSERT INTO login_account VALUES (13, 'Rico',       'Beech');
+INSERT INTO login_account VALUES (14, 'Aysha',      'Orr');
+INSERT INTO login_account VALUES (15, 'Tammy',      'Gunn');
+INSERT INTO login_account VALUES (16, 'Abu',        'Vaughan');
+INSERT INTO login_account VALUES (17, 'Dorian',     'Holland');
+INSERT INTO login_account VALUES (18, 'Hudson',     'Dixon');
+INSERT INTO login_account VALUES (19, 'Fionn',      'Hall');
+INSERT INTO login_account VALUES (20, 'Jaeden',     'Bowden');
+INSERT INTO login_account VALUES (21, 'Hania',      'Faulkner');
+INSERT INTO login_account VALUES (22, 'Rudi',       'Singh');
+INSERT INTO login_account VALUES (23, 'Caden',      'Mckee');
+INSERT INTO login_account VALUES (24, 'Sahib',      'Coombes');
+INSERT INTO login_account VALUES (25, 'Lee',        'Mcbride');
+INSERT INTO login_account VALUES (26, 'Macey',      'Mullen');
+INSERT INTO login_account VALUES (27, 'Deniz',      'Franco');
+INSERT INTO login_account VALUES (28, 'Blythe',     'Joseph');
+INSERT INTO login_account VALUES (29, 'Tyrell',     'Tucker');
+INSERT INTO login_account VALUES (30, 'Koby',       'Oliver');
+INSERT INTO login_account VALUES (31, 'Willa',      'Cash');
+INSERT INTO login_account VALUES (32, 'Rylee',      'Rosas');
+INSERT INTO login_account VALUES (33, 'Courtney',   'Pierce');
+INSERT INTO login_account VALUES (34, 'Wade',       'Villanueva');
+INSERT INTO login_account VALUES (35, 'Riley',      'Greenaway');
+INSERT INTO login_account VALUES (36, 'Mica',       'Cosmin');
 

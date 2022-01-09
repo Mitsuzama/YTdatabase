@@ -1,0 +1,5 @@
+DROP TABLE login_account;
+DROP TABLE video_comment;
+DROP TABLE videos;
+DROP TABLE users;
+DROP TABLE roles;

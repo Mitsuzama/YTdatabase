@@ -1,0 +1,40 @@
+CREATE TABLE roles(
+                role_id INTEGER PRIMARY KEY NOT NULL,
+                role_type VARCHAR(255) UNIQUE NOT NULL
+            );
+
+CREATE TABLE users(
+                user_id INTEGER PRIMARY KEY NOT NULL,
+                first_name VARCHAR(255),
+                last_name VARCHAR(255),
+                age INTEGER,
+                city TEXT,
+                email TEXT,
+                role_type VARCHAR(255) NOT NULL,
+                FOREIGN KEY (role_type) REFERENCES roles(role_type) ON DELETE CASCADE
+            );
+
+CREATE TABLE videos(
+                video_id INTEGER PRIMARY KEY NOT NULL,
+                title VARCHAR(255) NOT NULL UNIQUE,
+                user_id INTEGER NOT NULL,
+                no_of_likes INTEGER NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            );
+
+CREATE TABLE video_comment(
+                comment_id INTEGER PRIMARY KEY NOT NULL,
+                user_id INTEGER NOT NULL,
+                video_id INTEGER NOT NULL,
+                comments TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+                FOREIGN KEY (video_id) REFERENCES videos(video_id) ON DELETE CASCADE
+            );
+
+CREATE TABLE login_account(
+                user_id INTEGER PRIMARY KEY NOT NULL,
+                username VARCHAR(255) NOT NULL,
+                user_password VARCHAR(20),
+                CONSTRAINT password_check CHECK (length(user_password) >= 8 AND length(user_password)<=16),
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            );  
