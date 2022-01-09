@@ -16,11 +16,11 @@ CREATE TABLE roles(
 
 CREATE TABLE users(
                 user_id INTEGER PRIMARY KEY NOT NULL,
-                first_name VARCHAR(255),
-                last_name VARCHAR(255),
-                age INTEGER,
-                city TEXT,
-                email TEXT,
+                first_name VARCHAR(255) NOT NULL,
+                last_name VARCHAR(255) NOT NULL,
+                age INTEGER NOT NULL,
+                city TEXT NOT NULL,
+                email TEXT NOT NULL,
                 role_type VARCHAR(255) NOT NULL,
                 FOREIGN KEY (role_type) REFERENCES roles(role_type) ON DELETE CASCADE
             );

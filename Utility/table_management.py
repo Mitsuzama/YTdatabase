@@ -2,8 +2,8 @@ import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
 import sqlite3
-import window_log_in
-import window_sign_up
+import GUI.window_log_in
+import GUI.window_sign_up
 
 
 def dropTables():
@@ -166,11 +166,11 @@ def createTables():
     c.execute("""
         CREATE TABLE users(
                 user_id INTEGER PRIMARY KEY NOT NULL,
-                first_name VARCHAR(255),
-                last_name VARCHAR(255),
-                age INTEGER,
-                city TEXT,
-                email TEXT,
+                first_name VARCHAR(255) NOT NULL,
+                last_name VARCHAR(255) NOT NULL,
+                age INTEGER NOT NULL,
+                city TEXT NOT NULL,
+                email TEXT NOT NULL,
                 role_type VARCHAR(255) NOT NULL,
                 FOREIGN KEY (role_type) REFERENCES roles(role_type) ON DELETE CASCADE
             );
@@ -201,7 +201,7 @@ def createTables():
         CREATE TABLE login_account(
                 user_id INTEGER PRIMARY KEY NOT NULL,
                 username VARCHAR(255) NOT NULL,
-                user_password VARCHAR(20),
+                user_password VARCHAR(20) NOT NULL,
                 CONSTRAINT password_check CHECK (length(user_password) >= 1 AND length(user_password)<=16),
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
             );

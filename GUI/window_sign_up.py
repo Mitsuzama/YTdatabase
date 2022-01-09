@@ -96,7 +96,7 @@ def openWinLogin():
     # commit changes
     conn.commit()
 
-    global top, f_name, f_lname, age, city, email, password, second_frame
+    global scr_width, scr_height, top, f_name, f_lname, age, city, email, password, second_frame
 
     # startup thingz
     top = Toplevel()

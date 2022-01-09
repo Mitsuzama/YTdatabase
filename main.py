@@ -2,21 +2,13 @@ import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
 import sqlite3
-import window_log_in
-import window_sign_up
-from table_management import *
 
-def open_login():
-    # connect to db
-    conn = sqlite3.connect('yt_database.db')
+import GUI.window_log_in as wli
+import GUI.window_sign_up as wsu
 
-    # create cursor instance
-    c = conn.cursor()
+import Utility.Crypt as cr
+import Utility.table_management as tm
 
-    window_sign_up.openWinLogin()
-
-    conn.commit()
-    conn.close()
 
 class PyApp(tkinter.Tk):
     def __init__(self):
@@ -48,13 +40,13 @@ class PyApp(tkinter.Tk):
         # create cursor instance
         c = conn.cursor()
 
-        dropTables()
+        tm.dropTables()
 
         # create the tables
-        createTables()
+        tm.createTables()
 
         # insert into tables
-        insertIntoTables()
+        tm.insertIntoTables()
 
         welcome_image = ImageTk.PhotoImage(Image.open("Images/welcome.PNG"))
         welcome_image_label = Label(self, image=welcome_image, height=70, width=200)
@@ -64,31 +56,50 @@ class PyApp(tkinter.Tk):
         username_label = Label(self, text="Username:")
         username_label.grid(row=1, column=0, padx=20)
 
-        username_entry = Entry(self)
-        username_entry.grid(row=1, column=1, padx=20, pady=10)
+        self.username_entry = Entry(self)
+        self.username_entry.grid(row=1, column=1, padx=20, pady=10)
 
         # password
         password_label = Label(self, text="Password:")
         password_label.grid(row=2, column=0, padx=20)
 
-        password_entry = Entry(self, show="*")
-        password_entry.grid(row=2, column=1, padx=20, pady=10)
+        self.password_entry = Entry(self, show="*")
+        self.password_entry.grid(row=2, column=1, padx=20, pady=10)
 
         # login
-        login_button = Button(self, text="Login", command=window_log_in.openWinDb)
-        login_button.grid(row=3, column=0, columnspan=2, pady=10, padx=10, ipadx=137)
+        self.login_button = Button(self, text="Login", command=self.open_login)
+        self.login_button.grid(row=3, column=0, columnspan=2, pady=10, padx=10, ipadx=137)
 
         # sign up
-        sign_up_button = Button(self, text="Sign Up", command=open_login)
+        sign_up_button = Button(self, text="Sign Up", command=wsu.openWinLogin)
         sign_up_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=137)
 
         # quit
         quit_button = Button(self, text="Quit", command=self.quit)
         quit_button.grid(row=5, column=0, columnspan=2, pady=10, padx=10, ipadx=137)
 
+        # login try
+
         # commit changes
         conn.commit()
 
+        conn.close()
+
+    def open_login(self):
+        # connect to db
+        conn = sqlite3.connect('yt_database.db')
+
+        # create cursor instance
+        c = conn.cursor()
+
+        username_txt = self.username_entry.get()
+        password_txt = self.password_entry.get()
+
+        encode = cr.encrypt(password_txt)
+
+        wli.openWinDb()
+
+        conn.commit()
         conn.close()
 
 
